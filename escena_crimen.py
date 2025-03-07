@@ -7,13 +7,13 @@ bpy.ops.wm.read_factory_settings(use_empty=True)
 # Crear la habitación 6x6x3
 def create_room():
     bpy.ops.mesh.primitive_plane_add(size=6, location=(0, 0, 0))
-    floor = bpy.context.active_object
+    floor = bpy.context.view_layer.objects.active
     floor.name = "Floor"
 
     # Paredes
     for i in range(4):
         bpy.ops.mesh.primitive_plane_add(size=6, location=(0, 0, 1.5))
-        wall = bpy.context.active_object
+        wall = bpy.context.view_layer.objects.active
         wall.name = f"Wall_{i+1}"
         wall.rotation_euler[0] = 1.5708
         wall.location[2] = 1.5
@@ -27,24 +27,24 @@ def create_room():
 # Crear mesa
 def create_table():
     bpy.ops.mesh.primitive_cube_add(location=(0, 0, 0.5), size=1)
-    table = bpy.context.active_object
+    table = bpy.context.view_layer.objects.active
     table.name = "Table"
     table.scale = (1.5, 1, 0.1)
 
 # Crear papeles
 def create_paper(location):
     bpy.ops.mesh.primitive_plane_add(size=0.3, location=location)
-    paper = bpy.context.active_object
+    paper = bpy.context.view_layer.objects.active
     paper.name = f"Paper_{location}"
 
 # Crear carpeta confidencial
 def create_folder():
     bpy.ops.mesh.primitive_plane_add(size=0.6, location=(0, 0, 0.61))
-    folder = bpy.context.active_object
+    folder = bpy.context.view_layer.objects.active
     folder.name = "ConfidentialFolder"
 
     bpy.ops.object.text_add(location=(-0.15, 0, 0.62))
-    text = bpy.context.active_object
+    text = bpy.context.view_layer.objects.active
     text.data.body = "13 letras"
     text.rotation_euler = (1.5708, 0, 0)
     text.scale = (0.1, 0.1, 0.1)
@@ -52,44 +52,44 @@ def create_folder():
 # Crear vaso volcado y charco de agua
 def create_glass_and_puddle():
     bpy.ops.mesh.primitive_cylinder_add(radius=0.05, depth=0.1, location=(-0.5, 0, 0.55))
-    glass = bpy.context.active_object
+    glass = bpy.context.view_layer.objects.active
     glass.name = "SpilledGlass"
     glass.rotation_euler[1] = 1.5708
 
     bpy.ops.mesh.primitive_circle_add(radius=0.2, location=(-0.5, 0, 0.01))
-    puddle = bpy.context.active_object
+    puddle = bpy.context.view_layer.objects.active
     puddle.name = "WaterPuddle"
 
 # Crear ventana
 def create_window():
     bpy.ops.mesh.primitive_plane_add(size=1.5, location=(3, 0, 1.5))
-    window = bpy.context.active_object
+    window = bpy.context.view_layer.objects.active
     window.name = "Window"
     window.rotation_euler[2] = 1.5708
 
 # Crear soga colgando
 def create_rope():
     bpy.ops.curve.primitive_bezier_circle_add(radius=0.02, location=(0, -2.8, 3))
-    rope = bpy.context.active_object
+    rope = bpy.context.view_layer.objects.active
     rope.name = "HangingRope"
     rope.scale[1] = 5
 
 # Crear marca de cuerpo
 def create_body_outline():
     bpy.ops.mesh.primitive_circle_add(radius=0.5, location=(0, -2.8, 0.01))
-    outline = bpy.context.active_object
+    outline = bpy.context.view_layer.objects.active
     outline.name = "BodyOutline"
 
 # Agua cerca de la marca
 def create_near_water():
     bpy.ops.mesh.primitive_circle_add(radius=0.1, location=(0.2, -2.8, 0.01))
-    near_water = bpy.context.active_object
+    near_water = bpy.context.view_layer.objects.active
     near_water.name = "WaterNearBody"
 
 # Crear silla tirada
 def create_chair():
     bpy.ops.mesh.primitive_cube_add(location=(-1, 0.5, 0.25), size=1)
-    chair = bpy.context.active_object
+    chair = bpy.context.view_layer.objects.active
     chair.name = "Chair"
     chair.scale = (0.4, 0.4, 0.4)
     chair.rotation_euler = (1.5708, 0, 0.7854)
@@ -97,7 +97,7 @@ def create_chair():
 # Crear librero y libros esparcidos
 def create_bookshelf_and_books():
     bpy.ops.mesh.primitive_cube_add(location=(2, 2, 0.5), size=1)
-    bookshelf = bpy.context.active_object
+    bookshelf = bpy.context.view_layer.objects.active
     bookshelf.name = "Bookshelf"
     bookshelf.scale = (0.3, 0.6, 1)
 
@@ -108,7 +108,7 @@ def create_bookshelf_and_books():
 # Crear luz tenue
 def create_light():
     bpy.ops.object.light_add(type='POINT', location=(0, 0, 2.8))
-    light = bpy.context.active_object
+    light = bpy.context.view_layer.objects.active
     light.name = "RoomLight"
     light.data.energy = 50
 
